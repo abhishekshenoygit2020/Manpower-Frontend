@@ -6,18 +6,29 @@ import GoogleIcon from '@mui/icons-material/Google';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom"; // <-- import
+import { useAlert } from '../../ContextAPI/AlertContext'; // <-- import context hook
 
 function Login() {
     const theme = useTheme();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [alert, setAlert] = useState({ open: false, severity: "error", message: "" });
+    const navigate = useNavigate(); // <-- hook to redirect
+    const { showAlert } = useAlert(); // <-- use context
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("Email:", email);
         console.log("Password:", password);
-    };
-
+        // Simulate login validation
+        if (email !== "test@example.com" || password !== "123456") {
+            showAlert({ message: "Invalid email or password!", severity: "error" });
+        } else {
+            showAlert({ message: "Login successful!", severity: "success" });
+            setTimeout(() => navigate("/dashboard"), 1000);
+        };
+    }; 
     const handleSocialLogin = (platform) => {
         console.log(`Login with ${platform}`);
     };
@@ -109,6 +120,7 @@ function Login() {
                     </Tooltip>
                 ))}
             </Stack>
+            
         </Box>
     );
 }
