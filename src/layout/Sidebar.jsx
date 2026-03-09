@@ -88,7 +88,7 @@ const Sidebar = () => {
         /> */} LOGO
       </Box> 
 
-      <Divider  sx={{ mx: -1 }}/>
+      <Divider  sx={{ mx: -1, mt:0.9 }}/>
       <List>
         {menuItems.map((item) => (
           <ListItemButton
