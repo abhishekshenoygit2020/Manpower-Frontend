@@ -11,6 +11,8 @@ import { store } from './redux/store';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { getCustomTheme } from './theme/theme'; // ✅ Import your custom theme
 
+import { AlertProvider } from './ContextAPI/AlertContext'; //Alert Context Provider
+
 // --- Theme Wrapper that listens to Redux ---
 function ThemeWrapper() {
   const mode = useSelector((state) => state.setting.themeMode);      // light/dark
@@ -19,10 +21,13 @@ function ThemeWrapper() {
   const theme = useMemo(() => getCustomTheme(mode, colorMode), [mode, colorMode]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <RouterProvider router={router} />
-    </ThemeProvider>
+    <AlertProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </AlertProvider>
+
   );
 }
 
