@@ -109,8 +109,5 @@ function Login() {
                     </Tooltip>
                 ))}
             </Stack>
-        </Box>
-    );
-}
-
-export default Login;
+Stack>
+            
