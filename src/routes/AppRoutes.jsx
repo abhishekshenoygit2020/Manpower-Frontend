@@ -11,6 +11,7 @@ import Notifications from "../features/notification/Notifications";
 import Logs from "../features/usersLog/Logs.jsx";
 import Login from "../features/login/Login.jsx";
 import Signup from "../features/signup/Signup.jsx";
+import ManpowerRequirement from "../Pages/ManpowerRequirement.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -34,6 +35,9 @@ export const router = createBrowserRouter([
             // { path: "/login", element: <Login /> },
             // { path: "/signup", element: <Signup /> },
             { path: "*", element: <PageNotFound /> },
+             { path: "/postrequirement", element: <ManpowerRequirement /> },
+
+
         ]
     }
 ]);

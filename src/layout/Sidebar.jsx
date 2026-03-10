@@ -48,6 +48,8 @@ const Sidebar = () => {
     { text: 'Logs', icon: <HistoryIcon />, path: '/logs' },
     { text: 'Login', icon: <LoginIcon />, path: '/login' },
     { text: 'Sign up', icon: <LockIcon />, path: '/signup' },
+    { text: 'Post Requirement', icon: <LockIcon />, path: '/postrequirement' },
+
   ];
 
   const moreItems = [
