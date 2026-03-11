@@ -8,6 +8,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom"; // <-- import
 import { useAlert } from '../../ContextAPI/AlertContext'; // <-- import context hook
+import { useAuth } from '../../ContextAPI/AuthContext'; // <-- import auth context hook
 
 function Login() {
     const theme = useTheme();
@@ -16,19 +17,50 @@ function Login() {
     const [alert, setAlert] = useState({ open: false, severity: "error", message: "" });
     const navigate = useNavigate(); // <-- hook to redirect
     const { showAlert } = useAlert(); // <-- use context
+    const { login } = useAuth();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("Email:", email);
         console.log("Password:", password);
         // Simulate login validation
-        if (email !== "test@example.com" || password !== "123456") {
-            showAlert({ message: "Invalid email or password!", severity: "error" });
-        } else {
+        if (email === "admin@gmail.com" && password === "12345") {
+
+            login({
+                name: "Admin User",
+                role: "admin",
+                email: email
+            });
+
             showAlert({ message: "Login successful!", severity: "success" });
-            setTimeout(() => navigate("/dashboard"), 1000);
-        };
-    }; 
+            navigate("/");
+
+        } else if (email === "agency@gmail.com") {
+
+            login({
+                name: "Agency User",
+                role: "agency",
+                email: email
+            });
+
+            navigate("/");
+
+        } else if (email === "buyer@gmail.com") {
+
+            login({
+                name: "Buyer User",
+                role: "buyer",
+                email: email
+            });
+
+            navigate("/");
+
+        } else {
+
+            showAlert({ message: "Invalid email or password!", severity: "error" });
+
+        }
+    };
     const handleSocialLogin = (platform) => {
         console.log(`Login with ${platform}`);
     };
@@ -120,7 +152,7 @@ function Login() {
                     </Tooltip>
                 ))}
             </Stack>
-            
+
         </Box>
     );
 }
