@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "../layout/Layout";
 import Dashboard from "../features/dashboard/DashboardPage";
-import Profile from "../features/profile/Profile";
+import  Profile from "../Pages/Profile.jsx";
 import Tables from "../features/table/Tables";
 import Analytics from "../features/analytics/Analytics";
 import Notifications from "../features/notification/Notifications";

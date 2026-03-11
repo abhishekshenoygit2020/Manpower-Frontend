@@ -58,7 +58,7 @@ const Sidebar = () => {
     agency: {
       main: [
         { text: "Dashboard", path: "/", icon: <SpaceDashboardIcon /> },
-        { text: "Post Requirement", path: "/postrequirement", icon: <LockIcon /> },
+        // { text: "Manpower Requirement", path: "/postrequirement", icon: <LockIcon /> },
         { text: "Logs", path: "/logs", icon: <HistoryIcon /> }
       ]
     },
@@ -66,7 +66,9 @@ const Sidebar = () => {
     buyer: {
       main: [
         { text: "Dashboard", path: "/", icon: <SpaceDashboardIcon /> },
-        { text: "Notifications", path: "/notifications", icon: <NotificationsIcon /> }
+        { text: "Notifications", path: "/notifications", icon: <NotificationsIcon /> },
+        { text: "Post Requirement", path: "/postrequirement", icon: <LockIcon /> },
+        { text: "Profile", path: "/profile", icon: <Person2Icon /> }
       ]
     }
 
@@ -105,7 +107,7 @@ const Sidebar = () => {
         LOGO
       </Box>
 
-      <Divider sx={{ mx: -1, mt:0.9 }} />
+      <Divider sx={{ mx: -1, mt: 0.9 }} />
 
       <List>
 
