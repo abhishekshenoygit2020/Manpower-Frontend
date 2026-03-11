@@ -49,8 +49,6 @@ const Sidebar = () => {
     { text: 'Login', icon: <LoginIcon />, path: '/login' },
     { text: 'Sign up', icon: <LockIcon />, path: '/signup' },
     { text: 'Post Requirement', icon: <LockIcon />, path: '/postrequirement' },
-    { text: 'Profile', icon:  <Person2Icon />, path: '/profile' },
-
 
   ];
 
