@@ -43,11 +43,15 @@ const Sidebar = () => {
     { text: 'Dashboard', icon: <SpaceDashboardIcon />, path: '/' },
     { text: 'Tables', icon: <BackupTableIcon />, path: '/tables' },
     { text: 'Analytics', icon: <BarChartIcon />, path: '/analytics' },
-    { text: 'Profile', icon: <Person2Icon />, path: '/profile' },
+    // { text: 'Profile', icon: <Person2Icon />, path: '/profile' },
     { text: 'Notifications', icon: <NotificationsIcon />, path: '/notifications' },
     { text: 'Logs', icon: <HistoryIcon />, path: '/logs' },
     { text: 'Login', icon: <LoginIcon />, path: '/login' },
     { text: 'Sign up', icon: <LockIcon />, path: '/signup' },
+    { text: 'Post Requirement', icon: <LockIcon />, path: '/postrequirement' },
+    { text: 'Profile', icon:  <Person2Icon />, path: '/profile' },
+
+
   ];
 
   const moreItems = [

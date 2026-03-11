@@ -4,7 +4,7 @@ export const getCustomTheme = (mode = 'light') =>
     createTheme({
         palette: {
             mode,
-            ...(mode === 'dark'
+            ...(mode === 'light'
                 ? {
                     primary: {
                         main: '#8AB4F8',
@@ -104,12 +104,38 @@ export const getCustomTheme = (mode = 'light') =>
                         fontWeight: 600,
                         paddingInline: 18,
                         paddingBlock: 11,
-                        boxShadow:
-                            mode === 'dark'
-                                ? '0 6px 20px rgba(138, 180, 248, 0.25)'
-                                : '0 6px 20px rgba(30, 58, 138, 0.25)',
                     },
                 },
             },
+
+            MuiTextField: {
+                defaultProps: {
+                    size: "small",
+                    variant: "outlined",
+                    fullWidth: true
+                }
+            },
+
+            MuiOutlinedInput: {
+                styleOverrides: {
+                    root: {
+                        borderRadius: 8,
+                        width: "100%",
+
+                        "& .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "#cbd5e1"
+                        },
+
+                        "&:hover .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "#94a3b8"
+                        },
+
+                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                            borderColor: "#1e293b"
+                        }
+                    }
+                }
+            }
+
         },
     });
