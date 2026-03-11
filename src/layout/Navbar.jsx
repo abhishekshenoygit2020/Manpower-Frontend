@@ -6,6 +6,7 @@ import {
   TextField
 } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Menu as MenuIcon, Notifications as NotificationsIcon,
   Message as MessageIcon, Podcasts as PodcastsIcon,
@@ -27,6 +28,7 @@ import {
   toggleThemeMode
 } from "../redux/settingSlice";
 import { plPL } from '@mui/material/locale';
+import { useAuth } from '../ContextAPI/AuthContext';
 
 // Constants
 const sidenavColors = [
@@ -50,6 +52,8 @@ function Navbar() {
   const handleDrawerOpen = () => setDrawerOpen(true);
   const handleDrawerClose = () => setDrawerOpen(false);
 
+  const navigate = useNavigate();
+
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -58,12 +62,25 @@ function Navbar() {
   const handleCloseNotif = () => setAnchorNotif(null);
 
   const [anchorUser, setAnchorUser] = React.useState(null);
+  const { user, logout } = useAuth();
+
   const handleOpenUserMenu = (e) => setAnchorUser(e.currentTarget);
 
   const handleCloseUserMenu = () => {
     setAnchorUser(null)
     // navigate("/profile");
   };
+
+
+
+  const handleLogout = () => {
+    logout();                // Clear auth
+    handleCloseUserMenu();   // Close menu
+    // navigate("/login", { replace: true });  // Redirect to login
+  };
+
+
+
 
   // Persist theme and navbar position
   useEffect(() => {
@@ -141,7 +158,7 @@ function Navbar() {
             component="form"
             sx={{
               ml: 3,
-              display: 'flex',
+              display: 'none',
               alignItems: 'center',
               width: 220,
               height: 40,
@@ -186,11 +203,11 @@ function Navbar() {
         )}
 
         {/* Settings Button and Drawer */}
-        <Box ml={4} display="flex" alignItems="center">
+        <Box ml={4} display="none" alignItems="center">
           <IconButton color='inherit' onClick={handleDrawerOpen} aria-label="open settings">
             <SettingsIcon fontSize='small' sx={{
-            color: theme.palette.text.primary
-          }} />
+              color: theme.palette.text.primary
+            }} />
           </IconButton>
 
           <Drawer
@@ -483,20 +500,20 @@ function Navbar() {
             }
           }}
         >
-          <MenuItem
+          {/* <MenuItem
             onClick={handleCloseUserMenu}
             component={NavLink}
             to="/profile"
-            sx={{ textDecoration: "none", gap: 1, borderRadius: 2 }}> {<Person2Icon fontSize='small' />} Profile</MenuItem>
+            sx={{ textDecoration: "none", gap: 1, borderRadius: 2 }}> {<Person2Icon fontSize='small' />} Profile</MenuItem> */}
           <MenuItem
             onClick={handleCloseUserMenu}
             component={NavLink}
             to="/setting"
             sx={{ textDecoration: "none", gap: 1, borderRadius: 2 }}> {<SettingsIcon fontSize='small' />} Settings</MenuItem>
           <MenuItem
-            onClick={handleCloseUserMenu}
+            onClick={handleLogout}   // Call logout + redirect
             component={NavLink}
-            to="/logout"
+            // to="/login"
             sx={{ textDecoration: "none", gap: 1, borderRadius: 2 }}> {<LogoutIcon fontSize='small' />} Logout</MenuItem>
         </Menu>
 

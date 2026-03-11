@@ -12,7 +12,7 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import { getCustomTheme } from './theme/theme'; // ✅ Import your custom theme
 
 import { AlertProvider } from './ContextAPI/AlertContext'; //Alert Context Provider
-
+import { AuthProvider } from "./ContextAPI/AuthContext"; // Auth Context Provider
 // --- Theme Wrapper that listens to Redux ---
 function ThemeWrapper() {
   const mode = useSelector((state) => state.setting.themeMode);      // light/dark
@@ -21,13 +21,14 @@ function ThemeWrapper() {
   const theme = useMemo(() => getCustomTheme(mode, colorMode), [mode, colorMode]);
 
   return (
-    <AlertProvider>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <RouterProvider router={router} />
-      </ThemeProvider>
-    </AlertProvider>
-
+    <AuthProvider>
+      <AlertProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <RouterProvider router={router} />
+        </ThemeProvider>
+      </AlertProvider>
+    </AuthProvider>
   );
 }
 
