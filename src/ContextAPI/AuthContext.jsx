@@ -1,34 +1,58 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import ApplicationStore from "../Utils/LocalStorageUtil";
+// import axios from "../api/axios";
+// const LOGOUT_URL = './auth/logout';
 
-const AuthContext = createContext();
+export const AuthContext = createContext({
+  user: null,
+  loginFn: (user) => { },
+  logout: () => { }
+});
 
-export const AuthProvider = ({ children }) => {
+export const AuthContextProvider = ({ children }) => {
+  const [user, setUser] = useState('');
+  const [userType, setUserType] = useState('');
+  const [sidebarItemIndex, setSidebarItemIndex] = useState(0);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
+  const navigate = useNavigate();
+  const url = "http://localhost:3006";
+  // const url = "https://sl.synchash.in";
 
-  const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
+  const loginFn = userData => {
+    console.log(userData);
+    setUserType(userData.userType);
+    setUserEmail(userData.userEmail);
 
-  const login = (userData) => {
-    setUser(userData);
-    localStorage.setItem("user", JSON.stringify(userData));
-  };
+    ApplicationStore().setStorage('token', userData.userToken);
+    ApplicationStore().setStorage('userType', userData.userType);
+    ApplicationStore().setStorage('userEmail', userData.userEmail);
+    // ApplicationStore().setStorage('sideBarIndex', 0);
+    setLoggedIn(true);
+  }
 
-  const logout = () => {
+  const Logout = async () => {
+    console.log("Logging out...");
+    ApplicationStore().removeStorage('token');
+    ApplicationStore().removeStorage('userType');
+    ApplicationStore().removeStorage('userEmail');
+
     setUser(null);
-    localStorage.removeItem("user");
-     navigate("/login");
-  };
+    setLoggedIn(false);
+    navigate("/login");
+  }
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, loginFn, userType, loggedIn, Logout, userEmail }}>
       {children}
     </AuthContext.Provider>
-  );
-};
+  )
 
-export const useAuth = () => useContext(AuthContext);
+}
+
+export function useAuthContext() {
+  const { user, loginFn, userType, loggedIn, Logout, userEmail } = useContext(AuthContext);``
+  return { user, loginFn, userType, loggedIn, Logout, userEmail };
+}

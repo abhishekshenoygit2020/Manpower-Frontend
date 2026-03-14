@@ -28,7 +28,7 @@ import {
   toggleThemeMode
 } from "../redux/settingSlice";
 import { plPL } from '@mui/material/locale';
-import { useAuth } from '../ContextAPI/AuthContext';
+import { useAuthContext } from '../ContextAPI/AuthContext';
 
 // Constants
 const sidenavColors = [
@@ -62,7 +62,7 @@ function Navbar() {
   const handleCloseNotif = () => setAnchorNotif(null);
 
   const [anchorUser, setAnchorUser] = React.useState(null);
-  const { user, logout } = useAuth();
+  const { user, Logout } = useAuthContext();
 
   const handleOpenUserMenu = (e) => setAnchorUser(e.currentTarget);
 
@@ -74,7 +74,7 @@ function Navbar() {
 
 
   const handleLogout = () => {
-    logout();                // Clear auth
+    Logout();                // Clear auth
     handleCloseUserMenu();   // Close menu
     // navigate("/login", { replace: true });  // Redirect to login
   };
