@@ -17,13 +17,14 @@ import HistoryIcon from '@mui/icons-material/History';
 import Person2Icon from '@mui/icons-material/Person2';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import LockIcon from '@mui/icons-material/Lock';
-
+import TextSnippetIcon from '@mui/icons-material/TextSnippet';
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleSidebar } from '../redux/uiSlice';
 import { NavLink } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useAuth } from '../ContextAPI/AuthContext';
+import { useAuthContext } from '../ContextAPI/AuthContext';
 
 const Sidebar = () => {
 
@@ -31,7 +32,7 @@ const Sidebar = () => {
   const isSidebarOpen = useSelector((state) => state.ui.isSidebarOpen);
   const currentBgColor = useSelector((state) => state.setting.defaultSidebarButtonBgColor);
 
-  const { user } = useAuth();
+  const { userType } = useAuthContext();
 
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -66,8 +67,9 @@ const Sidebar = () => {
     buyer: {
       main: [
         { text: "Dashboard", path: "/", icon: <SpaceDashboardIcon /> },
-        { text: "Notifications", path: "/notifications", icon: <NotificationsIcon /> },
-        { text: "Post Requirement", path: "/postrequirement", icon: <LockIcon /> },
+        { text: "My Requests", path: "/notifications", icon: <TextSnippetIcon /> },
+        { text: "Post Requirement", path: "/postrequirement", icon: <TextSnippetIcon /> },
+        { text: "Active Bookings", path: "/profile", icon: <AppRegistrationIcon /> },
         { text: "Profile", path: "/profile", icon: <Person2Icon /> }
       ]
     }
@@ -75,8 +77,8 @@ const Sidebar = () => {
   };
 
   // SAFE ACCESS
-  const menuItems = roleMenus[user?.role]?.main || [];
-  const moreItems = roleMenus[user?.role]?.more || [];
+  const menuItems = roleMenus[userType]?.main || [];
+  const moreItems = roleMenus[userType]?.more || [];
 
   return (
 

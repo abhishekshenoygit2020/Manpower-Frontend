@@ -2,8 +2,8 @@ import { StrictMode, useMemo } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 
-import { RouterProvider } from 'react-router-dom';
-import { router } from "./routes/AppRoutes";
+import { BrowserRouter } from 'react-router-dom';
+import MainRoutes from './routes/AppRoutes';
 
 import { Provider, useSelector } from "react-redux";
 import { store } from './redux/store';
@@ -12,7 +12,9 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import { getCustomTheme } from './theme/theme'; // ✅ Import your custom theme
 
 import { AlertProvider } from './ContextAPI/AlertContext'; //Alert Context Provider
-import { AuthProvider } from "./ContextAPI/AuthContext"; // Auth Context Provider
+import { AuthContextProvider } from "./ContextAPI/AuthContext"; // Auth Context Provider
+
+
 // --- Theme Wrapper that listens to Redux ---
 function ThemeWrapper() {
   const mode = useSelector((state) => state.setting.themeMode);      // light/dark
@@ -21,14 +23,19 @@ function ThemeWrapper() {
   const theme = useMemo(() => getCustomTheme(mode, colorMode), [mode, colorMode]);
 
   return (
-    <AuthProvider>
-      <AlertProvider>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <RouterProvider router={router} />
-        </ThemeProvider>
-      </AlertProvider>
-    </AuthProvider>
+    <StrictMode>
+      <BrowserRouter>
+        <AuthContextProvider>
+          <AlertProvider>
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              <MainRoutes />
+            </ThemeProvider>
+          </AlertProvider>
+        </AuthContextProvider>
+      </BrowserRouter>
+    </StrictMode>
+
   );
 }
 

@@ -1,17 +1,19 @@
-import React from "react";
-import { Navigate, Outlet } from "react-router-dom";
-import { useAuth } from "../ContextAPI/AuthContext";
+import { Outlet, Navigate } from "react-router-dom";
+import { useAuthContext } from "../ContextAPI/AuthContext";
+import ApplicationStore from "../Utils/LocalStorageUtil";
 
-const ProtectedRoute = ({ redirectPath = "/login" }) => {
-  const { user } = useAuth();
+const ProtectedRoutes = () => {
+    const { loggedIn, userType } = useAuthContext();
 
-  if (!user) {
-    // Not logged in, redirect to login
-    return <Navigate to={redirectPath} replace />;
-  }
+    if (!loggedIn) {
+        return <Navigate replace to="/login" />;
+    }
 
-  // Logged in, render child routes
-  return <Outlet />;
-};
+    if (userType === "admin" || userType === "buyer" || userType === "agency") {
+        return <Outlet />;
+    }
 
-export default ProtectedRoute;
+    return <Navigate replace to="/login" />;
+}
+
+export default ProtectedRoutes;

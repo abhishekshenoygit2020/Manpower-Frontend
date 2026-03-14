@@ -8,7 +8,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom"; // <-- import
 import { useAlert } from '../../ContextAPI/AlertContext'; // <-- import context hook
-import { useAuth } from '../../ContextAPI/AuthContext'; // <-- import auth context hook
+import { useAuthContext } from '../../ContextAPI/AuthContext'; // <-- import auth context hook
 
 function Login() {
     const theme = useTheme();
@@ -17,43 +17,48 @@ function Login() {
     const [alert, setAlert] = useState({ open: false, severity: "error", message: "" });
     const navigate = useNavigate(); // <-- hook to redirect
     const { showAlert } = useAlert(); // <-- use context
-    const { login } = useAuth();
+    const { loginFn } = useAuthContext();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("Email:", email);
         console.log("Password:", password);
         // Simulate login validation
-        if (email === "admin@gmail.com" && password === "12345") {
+        if (email === "admin@gmail.com" && password === "123456") {
+            const userData = {               
+                userToken: "1565415sdxcvsdv",
+                userType: "admin",
+                userEmail: email                
+            };
 
-            login({
-                name: "Admin User",
-                role: "admin",
-                email: email
-            });
+            loginFn(userData);
 
             showAlert({ message: "Login successful!", severity: "success" });
-            navigate("/");
+            navigate("/Dashboard");
 
         } else if (email === "agency@gmail.com") {
 
-            login({
-                name: "Agency User",
-                role: "agency",
-                email: email
-            });
+            const userData = {               
+                userToken: "1565415sdxcvsdv",
+                userType: "agency",
+                userEmail: email                
+            };
 
-            navigate("/");
+            loginFn(userData);
+
+            navigate("/Dashboard");
 
         } else if (email === "buyer@gmail.com") {
 
-            login({
-                name: "Buyer User",
-                role: "buyer",
-                email: email
-            });
+            const userData = {               
+                userToken: "1565415sdxcvsdv",
+                userType: "buyer",
+                userEmail: email                
+            };
 
-            navigate("/");
+            loginFn(userData);
+
+            navigate("/Dashboard");
 
         } else {
 
