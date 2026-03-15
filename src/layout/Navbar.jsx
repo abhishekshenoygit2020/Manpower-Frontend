@@ -76,7 +76,7 @@ function Navbar() {
   const handleLogout = () => {
     Logout();                // Clear auth
     handleCloseUserMenu();   // Close menu
-    // navigate("/login", { replace: true });  // Redirect to login
+    navigate("/", { replace: true });  // Redirect to login
   };
 
 
@@ -512,7 +512,7 @@ function Navbar() {
             sx={{ textDecoration: "none", gap: 1, borderRadius: 2 }}> {<SettingsIcon fontSize='small' />} Settings</MenuItem>
           <MenuItem
             onClick={handleLogout}   // Call logout + redirect
-            component={NavLink}
+            // component={NavLink}
             // to="/login"
             sx={{ textDecoration: "none", gap: 1, borderRadius: 2 }}> {<LogoutIcon fontSize='small' />} Logout</MenuItem>
         </Menu>

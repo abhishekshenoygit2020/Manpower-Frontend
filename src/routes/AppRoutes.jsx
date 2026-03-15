@@ -19,9 +19,9 @@ import Site from "../Pages/Website/Site.jsx";
 const MainRoutes = () => {
   return (
     <Routes>
-      <Route exact path="/" element={<Login />} />
+      <Route path="/" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
-       <Route path="/Site" element={<Site />} />
+      <Route path="/Site" element={<Site />} />
       <Route element={<ProtectedRoute />}>
         <Route element={<Layout />}>
           <Route index path="/Dashboard" element={<Dashboard />} />

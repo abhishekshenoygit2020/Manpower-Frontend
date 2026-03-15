@@ -6,7 +6,7 @@ const ProtectedRoutes = () => {
     const loggedIn = ApplicationStore().getStorage('isLoggedIn');
     const userType = ApplicationStore().getStorage('userType');
 
-    if (!loggedIn) {
+    if (loggedIn == "" || loggedIn == null || loggedIn == undefined || loggedIn == "false") {
         return <Navigate replace to="/" />;
     }
 
