@@ -2,8 +2,9 @@ import { Outlet, Navigate } from "react-router-dom";
 import { useAuthContext } from "../ContextAPI/AuthContext";
 import ApplicationStore from "../Utils/LocalStorageUtil";
 
-const ProtectedRoutes = () => {
-    const { loggedIn, userType } = useAuthContext();
+const ProtectedRoutes = () => {   
+    const loggedIn = ApplicationStore().getStorage('isLoggedIn');
+    const userType = ApplicationStore().getStorage('userType');
 
     if (!loggedIn) {
         return <Navigate replace to="/" />;

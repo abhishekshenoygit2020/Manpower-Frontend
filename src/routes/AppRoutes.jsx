@@ -10,21 +10,29 @@ import Login from "../features/login/Login.jsx";
 import Signup from "../features/signup/Signup.jsx";
 import ManpowerRequirement from "../Pages/ManpowerRequirement.jsx";
 import PageNotFound from "../404-Error/PageNotFound";
+import ActiveBookings from "../Pages/Buyer/ActiveBookings.jsx";
 import ProtectedRoute from "../routes/ProtectedRoute";
+import AllRequest from "../Pages/Buyer/AllRequest";
+import BuyerDashboard from "../Pages/Buyer/BuyerDashboard.jsx";
+import Site from "../Pages/Website/Site.jsx";
 
 const MainRoutes = () => {
   return (
     <Routes>
       <Route exact path="/" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
+       <Route path="/Site" element={<Site />} />
       <Route element={<ProtectedRoute />}>
         <Route element={<Layout />}>
           <Route index path="/Dashboard" element={<Dashboard />} />
+          <Route path="/BuyerDashboard" element={<BuyerDashboard />} />         
           <Route path="/profile" element={<Profile />} />
           <Route path="/tables" element={<Tables />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/notifications" element={<Notifications />} />
-          <Route path="/logs" element={<Logs />} />
+          <Route path="/AllRequest" element={<AllRequest />} />
+          <Route path="/ManpowerRequirement" element={<ManpowerRequirement />} />
+          <Route path="/ActiveBookings" element={<ActiveBookings />} />
         </Route>
       </Route>
     </Routes>

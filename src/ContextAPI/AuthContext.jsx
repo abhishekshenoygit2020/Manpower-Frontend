@@ -28,6 +28,7 @@ export const AuthContextProvider = ({ children }) => {
     ApplicationStore().setStorage('token', userData.userToken);
     ApplicationStore().setStorage('userType', userData.userType);
     ApplicationStore().setStorage('userEmail', userData.userEmail);
+    ApplicationStore().setStorage("isLoggedIn", "true");
     // ApplicationStore().setStorage('sideBarIndex', 0);
     setLoggedIn(true);
   }
@@ -37,6 +38,7 @@ export const AuthContextProvider = ({ children }) => {
     ApplicationStore().removeStorage('token');
     ApplicationStore().removeStorage('userType');
     ApplicationStore().removeStorage('userEmail');
+    ApplicationStore().removeItem("isLoggedIn");
 
     setUser(null);
     setLoggedIn(false);
