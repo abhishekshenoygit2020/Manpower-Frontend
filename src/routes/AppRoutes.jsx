@@ -15,16 +15,16 @@ import ProtectedRoute from "../routes/ProtectedRoute";
 const MainRoutes = () => {
   return (
     <Routes>
-      <Route exact path="/Login" element={<Login />} />
+      <Route exact path="/" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route element={<ProtectedRoute />}>
         <Route element={<Layout />}>
-          <Route index path="/Dashboard" element={<Dashboard />} />  
-          <Route path="/profile" element={<Profile />} />  
-          <Route path="/tables" element={<Tables />} />  
-          <Route path="/analytics" element={<Analytics />} />  
-          <Route path="/notifications" element={<Notifications />} />  
-          <Route path="/logs" element={<Logs />} />  
+          <Route index path="/Dashboard" element={<Dashboard />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/tables" element={<Tables />} />
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/logs" element={<Logs />} />
         </Route>
       </Route>
     </Routes>

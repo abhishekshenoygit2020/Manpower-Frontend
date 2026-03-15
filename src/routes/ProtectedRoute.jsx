@@ -6,14 +6,14 @@ const ProtectedRoutes = () => {
     const { loggedIn, userType } = useAuthContext();
 
     if (!loggedIn) {
-        return <Navigate replace to="/login" />;
+        return <Navigate replace to="/" />;
     }
 
     if (userType === "admin" || userType === "buyer" || userType === "agency") {
         return <Outlet />;
     }
 
-    return <Navigate replace to="/login" />;
+    return <Navigate replace to="/" />;
 }
 
 export default ProtectedRoutes;

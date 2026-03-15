@@ -46,7 +46,7 @@ const Sidebar = () => {
 
     admin: {
       main: [
-        { text: "Dashboard", path: "/", icon: <SpaceDashboardIcon /> },
+        { text: "Dashboard", path: "/Dashboard", icon: <SpaceDashboardIcon /> },
         { text: "Agency Verification", path: "/AgencyVerification", icon: <BarChartIcon /> },
         // { text: "Users", path: "/users", icon: <Person2Icon /> },
       ],
@@ -66,7 +66,7 @@ const Sidebar = () => {
 
     buyer: {
       main: [
-        { text: "Dashboard", path: "/", icon: <SpaceDashboardIcon /> },
+        { text: "Dashboard", path: "/Dashboard", icon: <SpaceDashboardIcon /> },
         { text: "My Requests", path: "/notifications", icon: <TextSnippetIcon /> },
         { text: "Post Requirement", path: "/postrequirement", icon: <TextSnippetIcon /> },
         { text: "Active Bookings", path: "/profile", icon: <AppRegistrationIcon /> },

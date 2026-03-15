@@ -15,8 +15,7 @@ export const AuthContextProvider = ({ children }) => {
   const [userType, setUserType] = useState('');
   const [sidebarItemIndex, setSidebarItemIndex] = useState(0);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [userEmail, setUserEmail] = useState('');
-  const navigate = useNavigate();
+  const [userEmail, setUserEmail] = useState(''); 
   const url = "http://localhost:3006";
   // const url = "https://sl.synchash.in";
 
@@ -41,7 +40,7 @@ export const AuthContextProvider = ({ children }) => {
 
     setUser(null);
     setLoggedIn(false);
-    navigate("/login");
+    // navigate("/login");
   }
 
   return (
