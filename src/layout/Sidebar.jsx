@@ -24,15 +24,15 @@ import { toggleSidebar } from '../redux/uiSlice';
 import { NavLink } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { useAuthContext } from '../ContextAPI/AuthContext';
+import ApplicationStore from '../Utils/LocalStorageUtil';
 
 const Sidebar = () => {
 
   const dispatch = useDispatch();
   const isSidebarOpen = useSelector((state) => state.ui.isSidebarOpen);
   const currentBgColor = useSelector((state) => state.setting.defaultSidebarButtonBgColor);
-
-  const { userType } = useAuthContext();
+  const userType = ApplicationStore().getStorage('userType');
+  
 
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -46,7 +46,7 @@ const Sidebar = () => {
 
     admin: {
       main: [
-        { text: "Dashboard", path: "/", icon: <SpaceDashboardIcon /> },
+        { text: "Dashboard", path: "/Dashboard", icon: <SpaceDashboardIcon /> },
         { text: "Agency Verification", path: "/AgencyVerification", icon: <BarChartIcon /> },
         // { text: "Users", path: "/users", icon: <Person2Icon /> },
       ],
@@ -66,11 +66,12 @@ const Sidebar = () => {
 
     buyer: {
       main: [
-        { text: "Dashboard", path: "/", icon: <SpaceDashboardIcon /> },
-        { text: "My Requests", path: "/notifications", icon: <TextSnippetIcon /> },
-        { text: "Post Requirement", path: "/postrequirement", icon: <TextSnippetIcon /> },
-        { text: "Active Bookings", path: "/profile", icon: <AppRegistrationIcon /> },
-        { text: "Profile", path: "/profile", icon: <Person2Icon /> }
+        { text: "Dashboard", path: "/BuyerDashboard", icon: <SpaceDashboardIcon /> },
+        { text: "Post Requirement", path: "/ManpowerRequirement", icon: <TextSnippetIcon /> },
+        { text: "My Requests", path: "/AllRequest", icon: <TextSnippetIcon /> },
+        { text: "Active Bookings", path: "/ActiveBookings", icon: <AppRegistrationIcon /> },
+        { text: "Profile", path: "/profile", icon: <Person2Icon /> },
+        { text: "Site", path: "/Site", icon: <Person2Icon /> }
       ]
     }
 

@@ -24,16 +24,16 @@ function ThemeWrapper() {
 
   return (
     <StrictMode>
-      <BrowserRouter>
-        <AuthContextProvider>
+      <AuthContextProvider>
+        <BrowserRouter>
           <AlertProvider>
             <ThemeProvider theme={theme}>
               <CssBaseline />
               <MainRoutes />
             </ThemeProvider>
           </AlertProvider>
-        </AuthContextProvider>
-      </BrowserRouter>
+        </BrowserRouter>
+      </AuthContextProvider>
     </StrictMode>
 
   );

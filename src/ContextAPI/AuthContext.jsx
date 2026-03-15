@@ -15,8 +15,7 @@ export const AuthContextProvider = ({ children }) => {
   const [userType, setUserType] = useState('');
   const [sidebarItemIndex, setSidebarItemIndex] = useState(0);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [userEmail, setUserEmail] = useState('');
-  const navigate = useNavigate();
+  const [userEmail, setUserEmail] = useState(''); 
   const url = "http://localhost:3006";
   // const url = "https://sl.synchash.in";
 
@@ -29,6 +28,7 @@ export const AuthContextProvider = ({ children }) => {
     ApplicationStore().setStorage('token', userData.userToken);
     ApplicationStore().setStorage('userType', userData.userType);
     ApplicationStore().setStorage('userEmail', userData.userEmail);
+    ApplicationStore().setStorage("isLoggedIn", "true");
     // ApplicationStore().setStorage('sideBarIndex', 0);
     setLoggedIn(true);
   }
@@ -38,10 +38,11 @@ export const AuthContextProvider = ({ children }) => {
     ApplicationStore().removeStorage('token');
     ApplicationStore().removeStorage('userType');
     ApplicationStore().removeStorage('userEmail');
+    ApplicationStore().removeItem("isLoggedIn");
 
     setUser(null);
     setLoggedIn(false);
-    navigate("/login");
+    // navigate("/login");
   }
 
   return (

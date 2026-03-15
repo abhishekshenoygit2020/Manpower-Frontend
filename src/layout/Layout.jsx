@@ -46,7 +46,7 @@ const Layout = () => {
         </Box>
 
         {/* Footer */}
-        <Footer />
+        {/* <Footer /> */}
       </Box>
     </Box>
   );

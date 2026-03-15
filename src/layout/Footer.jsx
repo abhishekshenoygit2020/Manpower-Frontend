@@ -26,7 +26,7 @@ const Footer = () => {
         © {new Date().getFullYear()} CodeEnclave • All Rights Reserved
       </Typography>
 
-      <Box
+      {/* <Box
         display="flex"
         gap={2}
         flexWrap="wrap"
@@ -56,7 +56,7 @@ const Footer = () => {
           sx={{ cursor: "pointer", color: theme.palette.text.primary, textDecoration: "none" }}>
           License
         </Typography>
-      </Box>
+      </Box> */}
     </Box>
   );
 };
